@@ -36,7 +36,7 @@ h1, h2, h3 {
     height: 80%; */
 }
 
-#begin {
+#begin, #try-again {
     margin: 0 auto;
     background-color: #EF4836;
     width: 25%;
@@ -49,6 +49,19 @@ h1, h2, h3 {
 
 
 /* TRIVIA GAMEBOARD STYLES */
+#question-tracker {
+    margin-top: 100px;
+}
+
+.question-tracker {
+    display: block;
+    margin: 30px;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    background-color: #EF4836;
+}
+
 .answer-button {
     display: block;
     margin: 20px auto;

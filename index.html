@@ -33,15 +33,30 @@
                     <p>These are the rules of the quiz</p>
                     <p>There are a total of # questions. You have 20 seconds to answer each question.</p>
                     <p>Pour yourself a cup of coffee, grab some scratch paper and a pencil, and take a deep breath. Good luck!</p>
-                    <div class="text-center"><button id="begin" class="btn btn-lg">Let's Do This</button></div>
+                    <div class="text-center">
+                        <button id="begin" class="btn btn-lg">Let's Do This</button>
+                    </div>
                 </div>
                 <div class="gameboard">
-                    <div id="question"></div>
+                    <div class="row">
+                        <div class="col-md-1">
+                            <div id="question-tracker"></div>
+                        </div>
+                        <div class="col-md-6">
+                            <div id="question"></div>
+                        </div>
+                        <div class="col-md-5">
+                            <div id="answer"></div>
+                        </div>
+                    </div>
                 </div>
                 <div class="end-game">
                     <h1>Thank Goodness That's Over!</h1>
                     <p>Here's how you did:</p>
                     <div id="results"></div>
+                    <div class="text-center">
+                        <button id="try-again" class="btn btn-lg">Try Again</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -49,10 +64,15 @@
 
     <footer>
         <div id="footer">
-            <p>2018 &copy Tegan Bunsu Ashby | <span><a href="https://bunsushi.github.io">Website</a></span></p>
+            <p>2018 &copy Tegan Bunsu Ashby |
+                <span>
+                    <a href="https://bunsushi.github.io">Website</a>
+                </span>
+            </p>
         </div>
     </footer>
-    </div> <!-- /.container -->
+    </div>
+    <!-- /.container -->
 </body>
 
 </html>

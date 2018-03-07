@@ -28,10 +28,10 @@ $(document).ready(function () {
     var totalIncorrect = 0; // Number of incorrect user answers
 
     // Hide begin-game on load
-    $(".gameboard").hide();
+    // $(".gameboard").hide();
 
     // Hide results end-game on load
-    $(".end-game").hide();
+    // $(".end-game").hide();
 
     // Click "Let's Do This" button to start game
     $("#begin").on("click", function () {
@@ -39,6 +39,7 @@ $(document).ready(function () {
         $(".begin-game").hide();
     });
 
+    // Display the gameboard for the current question
     function displayCurrentQuestion() {
         // Display current question
         $("#question").append("<h3>" + triviaQuestions[currentQuestion].question + "</h3>");
@@ -54,12 +55,12 @@ $(document).ready(function () {
         // Create "Next Question" button
         var nextQuestionButton = $("<button>");
         nextQuestionButton.attr("id", "next-question");
-        nextQuestionButton.append("Next Question");
+        nextQuestionButton.append("Submit");
         $("#question").append(nextQuestionButton);
 
         // Click on "Next Question" button to generate new question
         $("#next-question").on("click", function () {
-            if (currentQuestion < triviaQuestions.length -1) {
+            if (currentQuestion < triviaQuestions.length - 1) {
                 currentQuestion++;
                 console.log(currentQuestion);
                 $("#question").html("");
@@ -72,6 +73,20 @@ $(document).ready(function () {
         });
     };
 
+    function displayQuestionTracker() {
+        // Generate question tracker buttons
+        for (var i=0; i < triviaQuestions.length; i++) {
+            var questionTracker = $("<div>");
+            questionTracker.addClass("question-tracker");
+            $("#question-tracker").append(questionTracker);
+        }
+    };
+
     displayCurrentQuestion();
+    displayQuestionTracker();
+
+    $("#try-again").on("click", function () {
+        location.reload(true);
+    })
 
 });
