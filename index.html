@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Trivia Game</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap v.3.3.7 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway|Open+Sans" rel="stylesheet">
+    <!-- Bootstrap JS & jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+    <!-- Custom JS -->
+    <script src="assets/javascript/app.js"></script>
+</head>
+
+<!-- Trivia game inspo: http://www.bbc.com/future/story/20180205-which-british-accent-is-closest-to-your-own -->
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="begin-game">
+                    <h1>You Don't Know Jack!</h1>
+                    <p>These are the rules of the quiz</p>
+                    <p>There are a total of # questions. You have 20 seconds to answer each question.</p>
+                    <p>Pour yourself a cup of coffee, grab some scratch paper and a pencil, and take a deep breath. Good luck!</p>
+                    <div class="text-center"><button id="begin" class="btn btn-lg">Let's Do This</button></div>
+                </div>
+                <div class="gameboard">
+                    <div id="question"></div>
+                </div>
+                <div class="end-game">
+                    <h1>Thank Goodness That's Over!</h1>
+                    <p>Here's how you did:</p>
+                    <div id="results"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div id="footer">
+            <p>2018 &copy Tegan Bunsu Ashby | <span><a href="https://bunsushi.github.io">Website</a></span></p>
+        </div>
+    </footer>
+    </div> <!-- /.container -->
+</body>
+
+</html>

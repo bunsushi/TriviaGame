@@ -1,0 +1,87 @@
+html {
+    height: 100%;
+}
+
+body {
+    background-image: url("../images/laptop-desk.jpg");
+    /* background-repeat: no-repeat; */
+    background-size: 100% 100%;
+    color: #000;
+    font-weight: thin;
+    font-size: 18px;
+    /* text-shadow: 3px 3px 0px rgba(0, 0, 0, .5); */
+    font-family: "Open Sans", sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+a:hover {
+    text-decoration: none;
+    color: hotpink;
+}
+
+h1, h2, h3 {
+    text-align: center;
+    font-family: "Raleway", sans-serif;
+}
+.begin-game, .gameboard, .end-game {
+    background-color: rgba(225, 225, 225, .95);
+    margin: 100px auto;
+    padding: 50px;
+    border-radius: 10px;
+    /* width: 80%;
+    height: 80%; */
+}
+
+#begin {
+    margin: 0 auto;
+    background-color: #EF4836;
+    width: 25%;
+    text-transform: uppercase;
+    color: #fff;
+    border-radius: 50px;
+    padding: 20px;
+    border: none;
+}
+
+
+/* TRIVIA GAMEBOARD STYLES */
+.answer-button {
+    display: block;
+    margin: 20px auto;
+    padding: 20px;
+    width: 300px;
+    background-color: #517abc;
+    color: #fff;
+    letter-spacing: 2px;
+    border: none;
+}
+
+.answer-button:hover {
+    background-color: #3f5a84;
+}
+
+#next-question {
+    display: block;
+    margin: 20px auto;
+    background-color: #EF4836;
+    width: 25%;
+    text-transform: uppercase;
+    color: #fff;
+    border-radius: 50px;
+    padding: 20px;
+    border: none;
+}
+
+/* FOOTER STYLES */
+footer {
+    background-color: rgba(225, 225, 225);
+    padding: 20px;
+}
+
+#footer {
+    text-align: center;
+}
