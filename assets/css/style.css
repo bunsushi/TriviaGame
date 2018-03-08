@@ -3,7 +3,7 @@ html {
 }
 
 body {
-    background-image: url("../images/laptop-desk.jpg");
+    background-image: url("../images/blue-polygon.jpg");
     /* background-repeat: no-repeat; */
     background-size: 100% 100%;
     color: #000;
@@ -15,12 +15,13 @@ body {
 
 a {
     text-decoration: none;
-    color: #000;
+    color: #fff;
 }
 
 a:hover {
     text-decoration: none;
-    color: hotpink;
+    color: #F64747;
+    font-weight: bold;
 }
 
 h1, h2, h3 {
@@ -29,15 +30,15 @@ h1, h2, h3 {
     padding: 20px;
 }
 .begin-game, .gameboard, .end-game {
-    background-color: rgba(225, 225, 225, .95);
-    margin: 100px auto;
+    background-color: rgba(255, 255, 255, .8);
+    margin: 50px auto;
     padding: 50px;
     border-radius: 10px;
     position: relative;
 }
 
 #begin, #try-again {
-    margin: 0 auto;
+    margin: 50px auto 0 auto;
     background-color: #F64747;
     width: 25%;
     text-transform: uppercase;
@@ -100,6 +101,24 @@ h1, h2, h3 {
     border: none;
 }
 
+#timer {
+    border: 2px solid #000;
+    border-radius: 50%;
+    margin: 0 auto;
+    width: 60px;
+    height: 60px;
+    font-size: 36px;
+    text-align: center;
+    font-family: "Raleway", sans-serif;
+}
+
+/* END GAME STYLES */
+.result {
+    border-bottom: 2px solid #F64747;
+    padding: 5px;
+    font-weight: bolder;
+}
+
 /* FOOTER STYLES */
 footer {
     background-color: rgba(225, 225, 225);
@@ -108,4 +127,5 @@ footer {
 
 #footer {
     text-align: center;
+    color: #fff;
 }

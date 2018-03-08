@@ -30,21 +30,39 @@ $(document).ready(function () {
     var num = 0; // Counter for question tracker id
 
     // Hide begin-game on load
-    // $(".gameboard").hide();
+    $(".gameboard").hide();
 
     // Hide results end-game on load
-    // $(".end-game").hide();
+    $(".end-game").hide();
 
     // Click "Let's Do This" button to start game
     $("#begin").on("click", function () {
         $(".gameboard").fadeIn();
         $(".begin-game").hide();
+
+        displayCurrentQuestion();
+        displayQuestionTracker();
     });
 
     // Display the gameboard for the current question
     function displayCurrentQuestion() {
         // Display current question
         $("#question").append("<h3>" + triviaQuestions[currentQuestion].question + "</h3>");
+
+        // Timer function for each question
+        // TO DO: reset the timer when user either submits question or fails question
+        var timeLeft = 31;
+        var intervalId = setInterval(timerCountdown, 1000);
+
+        function timerCountdown() {
+            timeLeft--;
+            $("#timer").html(timeLeft);
+
+            // ATTN stops at 0, then upon submit, changes from -1 to 30
+            if (timeLeft < 1) {
+                clearInterval(intervalId);
+            }
+        }
 
         // Generate buttons for possible answers
         for (var i = 0; i < triviaQuestions[currentQuestion].answers.length; i++) {
@@ -67,11 +85,13 @@ $(document).ready(function () {
                 $("#question").html(""); // clear gameboard questions
                 $("#timer").html(""); // clear countdown timer
                 displayCurrentQuestion(); // repopulate gameboard
+                clearInterval(intervalId);
+                timerCountdown(); // reset the timer
             }
             // If id question-NUMBER = index number of currentQuestion
             // Change questionTracker class to "question-tracker-active"
 
-            else {
+            else if (currentQuestion === triviaQuestions.length - 1) {
                 $(".gameboard").hide();
                 $(".end-game").fadeIn();
             }
@@ -87,23 +107,6 @@ $(document).ready(function () {
             $("#question-tracker").append(questionTracker);
         }
     };
-
-    displayCurrentQuestion();
-    displayQuestionTracker();
-
-    // Timer function for each question
-    var timeLeft = 10;
-    var intervalId = setInterval(timerCountdown, 1000);
-
-    function timerCountdown() {
-        timeLeft--;
-        $("#timer").html(timeLeft);
-
-        if (timeLeft <= 0) {
-            clearInterval(intervalId);
-            $("#timer").html("Whomp whomp");
-        }
-    }
 
     // Refresh the quiz
     $("#try-again").on("click", function () {

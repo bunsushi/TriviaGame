@@ -31,7 +31,7 @@
                 <div class="begin-game">
                     <h1>You Don't Know Jack!</h1>
                     <p>These are the rules of the quiz</p>
-                    <p>There are a total of # questions. You have 20 seconds to answer each question.</p>
+                    <p>There are a total of <span class="result"># questions</span>. You have <span class="result">20 seconds</span> to answer each question.</p>
                     <p>Pour yourself a cup of coffee, grab some scratch paper and a pencil, and take a deep breath. Good luck!</p>
                     <div class="text-center">
                         <button id="begin" class="btn btn-lg">Let's Do This</button>
@@ -48,7 +48,7 @@
                         <div class="col-md-6">
                             <div id="answer">
                                 <h3>Time Remaining:</h3>
-                                <h1 id="timer"></h1>
+                                <div id="timer"></div>
                             </div>
                         </div>
                     </div>
@@ -56,8 +56,12 @@
                 <div class="end-game">
                     <h1>Phew, It's Over!</h1>
                     <div class="text-center">
-                    <p>Here's how you did:</p>
-                    <div id="results"></div>
+                        <p>You answered
+                            <span id="right-answers" class="result"># out #</span> questions correctly!</p>
+                        <!-- If correct > # -->
+                        <br>
+                        <p>Good job!</p>
+                        <div id="results"></div>
                         <button id="try-again" class="btn btn-lg">Try Again</button>
                     </div>
                 </div>
@@ -67,6 +71,7 @@
 
     <footer>
         <div id="footer">
+            <hr>
             <p>2018 &copy Tegan Bunsu Ashby |
                 <span>
                     <a href="https://bunsushi.github.io">Website</a>
