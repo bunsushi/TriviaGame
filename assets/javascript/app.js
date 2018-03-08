@@ -2,13 +2,13 @@ $(document).ready(function () {
 
     // Object array containing trivia game questions, answers, and solution
     var triviaQuestions = [{
-        question: "What is the name of my dog?",
-        answers: ["Victor", "Hugo", "Clement", "Francis"],
-        solution: "Victor"
+        question: "What is the most spoken language in the world?",
+        answers: ["Chinese", "English", "Hindi", "Spanish"],
+        solution: "Chinese"
     }, {
-        question: "What is my favorite food?",
-        answers: ["Cheese", "Pizza", "Falafel", "Ice Cream"],
-        solution: "Falafel"
+        question: "In which Malaysian state is the city of Kuching located?",
+        answers: ["Penang", "Sabah", "Sarawak", "Selangor"],
+        solution: "Sarawak"
     }, {
         question: "How many stars are in the galaxy?",
         answers: ["1 thousand million", "10 thousand million", "100 thousand million", "1 million million"],
@@ -26,12 +26,10 @@ $(document).ready(function () {
     var currentQuestion = 0; // Index of question the object array triviaQuestions
     var totalQuestions = (Object.keys(triviaQuestions).length);
     var totalCorrect = 0; // Number of correct user answers
-    var totalIncorrect = 0; // Number of incorrect user answers
-
     var userGuess; // Holds user guess
-
     var num = 0; // Counter for question tracker id
 
+    // Display total number of questions on start
     $("#total-questions").html(totalQuestions + " questions");
 
     // Hide begin-game on load
@@ -66,34 +64,17 @@ $(document).ready(function () {
                 $("#answer").html("<h3>Time's Up!</h3><p>The correct answer is:</p><h3>" + triviaQuestions[currentQuestion].solution + "</h3>");
                 setTimeout(function () {
                     if (currentQuestion < triviaQuestions.length - 1) {
-                        currentQuestion++;
-                        $("#question").html(""); // clear gameboard questions
-                        $("#answer").html(""); // clear answer
-                        displayCurrentQuestion();
-                        clearInterval(intervalId);
-                        $("#time-remaining").show();
+                        newQuestion();
                     }
                     else if (currentQuestion === triviaQuestions.length - 1) {
-                        $(".gameboard").hide();
-                        $(".end-game").fadeIn();
-                        $("#right-answers").html(totalCorrect + " out of " + totalQuestions);
-
-                        if (totalCorrect > 3) {
-                            $("#comment").html("Good job!");
-                        }
-                        if (totalCorrect === 3) {
-                            $("#comment").html("Better hit the books!");
-                        } else if (totalCorrect < 3) {
-                            $("#comment").html("See me after class...");
-                        }
+                        endGame();
                     }
-                },
-                    5000);
+                }, 5000);
             };
         }
 
         // Display current question
-        var questionText = "<h3>" + triviaQuestions[currentQuestion].question + "</h3>"
+        var questionText = "<h3>" + triviaQuestions[currentQuestion].question + "</h3>";
         $("#question").append(questionText);
         $("#question").append("<div class='answer-button'>");
 
@@ -110,7 +91,6 @@ $(document).ready(function () {
         // Capture input
         $('input:radio').on("click", function () {
             userGuess = $(this).attr('value');
-            console.log(userGuess);
         })
 
         // Create "Next Question" button
@@ -122,64 +102,29 @@ $(document).ready(function () {
         // Click on "Next Question" button to generate new question
         $("#next-question").on("click", function () {
             if (userGuess === triviaQuestions[currentQuestion].solution) {
-                console.log("Huzzah");
                 totalCorrect++;
-                console.log("Correct answers: " + totalCorrect);
-
                 clearInterval(intervalId);
                 $("#time-remaining").hide();
                 $("#answer").html("<h3>That's right!</h3><p>The correct answer is:</p><h3>" + triviaQuestions[currentQuestion].solution + "</h3>");
                 setTimeout(function () {
                     if (currentQuestion < triviaQuestions.length - 1) {
-                        currentQuestion++;
-                        $("#question").html("");
-                        $("#answer").html("");
-                        displayCurrentQuestion();
-                        $("#time-remaining").show();
+                        newQuestion();
                     }
                     else if (currentQuestion === triviaQuestions.length - 1) {
-                        $(".gameboard").hide();
-                        $(".end-game").fadeIn();
-                        $("#right-answers").html(totalCorrect + " out of " + totalQuestions);
-
-                        if (totalCorrect > 3) {
-                            $("#comment").html("Good job!");
-                        }
-                        if (totalCorrect === 3) {
-                            $("#comment").html("Better hit the books!");
-                        } else if (totalCorrect < 3) {
-                            $("#comment").html("See me after class...");
-                        }
+                        endGame();
                     }
                 }, 5000);
             }
             if (userGuess != triviaQuestions[currentQuestion].solution) {
-                console.log("Whoops");
-
                 clearInterval(intervalId);
                 $("#time-remaining").hide();
                 $("#answer").html("<h3>Oh no, that's wrong!</h3><p>The correct answer is:</p><h3>" + triviaQuestions[currentQuestion].solution + "</h3>");
                 setTimeout(function () {
                     if (currentQuestion < triviaQuestions.length - 1) {
-                        currentQuestion++;
-                        $("#question").html("");
-                        $("#answer").html("");
-                        displayCurrentQuestion();
-                        $("#time-remaining").show();
+                        newQuestion();
                     }
                     else if (currentQuestion === triviaQuestions.length - 1) {
-                        $(".gameboard").hide();
-                        $(".end-game").fadeIn();
-                        $("#right-answers").html(totalCorrect + " out of " + totalQuestions);
-
-                        if (totalCorrect > 3) {
-                            $("#comment").html("Good job!");
-                        }
-                        if (totalCorrect === 3) {
-                            $("#comment").html("Better hit the books!");
-                        } else if (totalCorrect < 3) {
-                            $("#comment").html("See me after class...");
-                        }
+                        endGame();
                     }
                 }, 5000);
             }
@@ -191,8 +136,34 @@ $(document).ready(function () {
         for (var i = 0; i < triviaQuestions.length; i++) {
             var questionTracker = $("<div>");
             questionTracker.addClass("question-tracker");
-            questionTracker.attr("id", "question-" + num++);
+            questionTracker.attr("id", num++);
             $("#question-tracker").append(questionTracker);
+
+            console.log(questionTracker.attr("id"));
+            console.log("Current question: " + currentQuestion);
+        }
+    };
+
+    function newQuestion() {
+        currentQuestion++;
+        $("#question").html("");
+        $("#answer").html("");
+        displayCurrentQuestion();
+        $("#time-remaining").show();
+    }
+
+    function endGame() {
+        $(".gameboard").hide();
+        $(".end-game").fadeIn();
+        $("#right-answers").html(totalCorrect + " out of " + totalQuestions);
+
+        if (totalCorrect > 3) {
+            $("#comment").html("Good job!");
+        }
+        if (totalCorrect === 3) {
+            $("#comment").html("Better hit the books!");
+        } else if (totalCorrect < 3) {
+            $("#comment").html("See me after class...");
         }
     };
 
