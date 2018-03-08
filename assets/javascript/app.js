@@ -24,6 +24,7 @@ $(document).ready(function () {
     }];
 
     var currentQuestion = 0; // Index of question the object array triviaQuestions
+    var totalQuestions = (Object.keys(triviaQuestions).length);
     var totalCorrect = 0; // Number of correct user answers
     var totalIncorrect = 0; // Number of incorrect user answers
 
@@ -31,11 +32,13 @@ $(document).ready(function () {
 
     var num = 0; // Counter for question tracker id
 
+    $("#total-questions").html(totalQuestions + " questions");
+
     // Hide begin-game on load
-    // $(".gameboard").hide();
+    $(".gameboard").hide();
 
     // Hide results end-game on load
-    // $(".end-game").hide();
+    $(".end-game").hide();
 
     // Click "Let's Do This" button to start game
     $("#begin").on("click", function () {
@@ -48,6 +51,7 @@ $(document).ready(function () {
 
     // Display the gameboard for the current question
     function displayCurrentQuestion() {
+
         // Display current question
         var questionText = "<h3>" + triviaQuestions[currentQuestion].question + "</h3>"
         $("#question").append(questionText);
@@ -55,7 +59,7 @@ $(document).ready(function () {
 
         // Timer function for each question
         // TO DO: reset the timer when user either submits question or fails question
-        var timeLeft = 31;
+        var timeLeft = 21;
         var intervalId = setInterval(timerCountdown, 1000);
 
         function timerCountdown() {
@@ -65,7 +69,34 @@ $(document).ready(function () {
             // ATTN stops at 0, then upon submit, changes from -1 to 30
             if (timeLeft < 1) {
                 clearInterval(intervalId);
-            }
+                $("#time-remaining").hide();
+                $("#answer").html("<h3>Time's Up!</h3><p>The correct answer was:</p><h3>" + triviaQuestions[currentQuestion].solution + "</h3>");
+                setTimeout(function () {
+                    if (currentQuestion < triviaQuestions.length - 1) {
+                        currentQuestion++;
+                        $("#question").html(""); // clear gameboard questions
+                        $("#answer").html(""); // clear answer
+                        displayCurrentQuestion();
+                        clearInterval(intervalId);
+                        $("#time-remaining").show();
+                    }
+                    else if (currentQuestion === triviaQuestions.length - 1) {
+                        $(".gameboard").hide();
+                        $(".end-game").fadeIn();
+                        $("#right-answers").html(totalCorrect + " out of " + totalQuestions);
+        
+                        if (totalCorrect > 3) {
+                            $("#comment").html("Good job!");
+                        }
+                        if (totalCorrect === 3) {
+                            $("#comment").html("Better hit the books!");
+                        } else if (totalCorrect < 3) {
+                            $("#comment").html("See me after class...");
+                        }
+                    }
+                    },
+                    5000);
+            };
         }
 
         // Generate buttons for possible answers
@@ -98,8 +129,11 @@ $(document).ready(function () {
                 totalCorrect++;
                 console.log("Correct answers: " + totalCorrect);
             }
+            else {
+                console.log("Whoops");
+            }
 
-            // Move on to next question
+            // Next question
             if (currentQuestion < triviaQuestions.length - 1) {
                 currentQuestion++;
                 $("#question").html(""); // clear gameboard questions
@@ -111,9 +145,20 @@ $(document).ready(function () {
             // If id question-NUMBER = index number of currentQuestion
             // Change questionTracker class to "question-tracker-active"
 
+            // End game
             else if (currentQuestion === triviaQuestions.length - 1) {
                 $(".gameboard").hide();
                 $(".end-game").fadeIn();
+                $("#right-answers").html(totalCorrect + " out of " + totalQuestions);
+
+                if (totalCorrect > 3) {
+                    $("#comment").html("Good job!");
+                }
+                if (totalCorrect === 3) {
+                    $("#comment").html("Better hit the books!");
+                } else if (totalCorrect < 3) {
+                    $("#comment").html("See me after class...");
+                }
             }
         });
     };
@@ -127,15 +172,6 @@ $(document).ready(function () {
             $("#question-tracker").append(questionTracker);
         }
     };
-
-    // $(document).on("click", ".answer-button", function () {
-    //     $(this).addClass("answer-selected");
-    //     var text = $(this).innerHTML;
-    //     console.log(text); // returns undefined
-    //     // if ($(this).innerHTML === triviaQuestions.solution) {
-    //     //     totalCorrect++;
-    //     // }
-    // });
 
     // Refresh the quiz
     $("#try-again").on("click", function () {

@@ -11,6 +11,7 @@ body {
     font-size: 18px;
     /* text-shadow: 3px 3px 0px rgba(0, 0, 0, .5); */
     font-family: "Open Sans", sans-serif;
+    text-align: center;
 }
 
 a {
@@ -25,7 +26,6 @@ a:hover {
 }
 
 h1, h2, h3 {
-    text-align: center;
     font-family: "Raleway", sans-serif;
     padding: 20px;
 }
@@ -82,14 +82,13 @@ h1, h2, h3 {
     color: #fff;
     letter-spacing: 2px;
     border: none;
-    text-align: center;
 }
 
 /* .radio input[type=radio]{
     visibility: hidden;
 } */
 
-.radio input[type=radio]:checked{
+label .radio input[type=radio]:checked{
     background-color: #1F3A93;
     box-shadow: 5px 5px 5px rgba(33, 33, 33, .6);
 }
@@ -119,7 +118,6 @@ h1, h2, h3 {
     width: 60px;
     height: 60px;
     font-size: 36px;
-    text-align: center;
     font-family: "Raleway", sans-serif;
 }
 
@@ -137,6 +135,5 @@ footer {
 }
 
 #footer {
-    text-align: center;
     color: #fff;
 }

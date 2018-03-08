@@ -31,7 +31,9 @@
                 <div class="begin-game">
                     <h1>You Don't Know Jack!</h1>
                     <p>These are the rules of the quiz</p>
-                    <p>There are a total of <span class="result"># questions</span>. You have <span class="result">20 seconds</span> to answer each question.</p>
+                    <p>There are a total of
+                        <span class="result" id="total-questions"></span>. You have
+                        <span class="result">20 seconds</span> to answer each question.</p>
                     <p>Pour yourself a cup of coffee, grab some scratch paper and a pencil, and take a deep breath. Good luck!</p>
                     <div class="text-center">
                         <button id="begin" class="btn btn-lg">Let's Do This</button>
@@ -46,7 +48,8 @@
                             <div id="question"></div>
                         </div>
                         <div class="col-md-6">
-                            <div id="answer">
+                            <div id="answer"></div>
+                            <div id="time-remaining">
                                 <h3>Time Remaining:</h3>
                                 <div id="timer"></div>
                             </div>
@@ -57,10 +60,10 @@
                     <h1>Phew, It's Over!</h1>
                     <div class="text-center">
                         <p>You answered
-                            <span id="right-answers" class="result"># out #</span> questions correctly!</p>
+                            <span id="right-answers" class="result"></span> questions correctly!</p>
                         <!-- If correct > # -->
                         <br>
-                        <p>Good job!</p>
+                        <p id="comment"></p>
                         <div id="results"></div>
                         <button id="try-again" class="btn btn-lg">Try Again</button>
                     </div>
