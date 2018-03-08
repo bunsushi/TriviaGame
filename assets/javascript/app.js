@@ -11,21 +11,23 @@ $(document).ready(function () {
         solution: "Falafel"
     }, {
         question: "How many stars are in the solar system?",
-        answers: ["0", "1"],
+        answers: ["0", "1", "2", "3"],
         solution: ""
     }, {
         question: "Inana is a goddess in which ancient civilization?",
-        answers: ["0", "1"],
+        answers: ["0", "1", "2", "3"],
         solutions: ""
     }, {
         question: "Who won Super Bowl 52?",
-        answers: ["0", "1"],
+        answers: ["0", "1", "2", "3"],
         solutions: ""
     }];
 
     var currentQuestion = 0; // Index of question the object array triviaQuestions
     var totalCorrect = 0; // Number of correct user answers
     var totalIncorrect = 0; // Number of incorrect user answers
+
+    var num = 0; // Counter for question tracker id
 
     // Hide begin-game on load
     // $(".gameboard").hide();
@@ -62,10 +64,13 @@ $(document).ready(function () {
         $("#next-question").on("click", function () {
             if (currentQuestion < triviaQuestions.length - 1) {
                 currentQuestion++;
-                console.log(currentQuestion);
-                $("#question").html("");
-                displayCurrentQuestion();
+                $("#question").html(""); // clear gameboard questions
+                $("#timer").html(""); // clear countdown timer
+                displayCurrentQuestion(); // repopulate gameboard
             }
+            // If id question-NUMBER = index number of currentQuestion
+            // Change questionTracker class to "question-tracker-active"
+
             else {
                 $(".gameboard").hide();
                 $(".end-game").fadeIn();
@@ -75,9 +80,10 @@ $(document).ready(function () {
 
     function displayQuestionTracker() {
         // Generate question tracker buttons
-        for (var i=0; i < triviaQuestions.length; i++) {
+        for (var i = 0; i < triviaQuestions.length; i++) {
             var questionTracker = $("<div>");
             questionTracker.addClass("question-tracker");
+            questionTracker.attr("id", "question-" + num++);
             $("#question-tracker").append(questionTracker);
         }
     };
@@ -85,6 +91,21 @@ $(document).ready(function () {
     displayCurrentQuestion();
     displayQuestionTracker();
 
+    // Timer function for each question
+    var timeLeft = 10;
+    var intervalId = setInterval(timerCountdown, 1000);
+
+    function timerCountdown() {
+        timeLeft--;
+        $("#timer").html(timeLeft);
+
+        if (timeLeft <= 0) {
+            clearInterval(intervalId);
+            $("#timer").html("Whomp whomp");
+        }
+    }
+
+    // Refresh the quiz
     $("#try-again").on("click", function () {
         location.reload(true);
     })

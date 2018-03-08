@@ -26,19 +26,19 @@ a:hover {
 h1, h2, h3 {
     text-align: center;
     font-family: "Raleway", sans-serif;
+    padding: 20px;
 }
 .begin-game, .gameboard, .end-game {
     background-color: rgba(225, 225, 225, .95);
     margin: 100px auto;
     padding: 50px;
     border-radius: 10px;
-    /* width: 80%;
-    height: 80%; */
+    position: relative;
 }
 
 #begin, #try-again {
     margin: 0 auto;
-    background-color: #EF4836;
+    background-color: #F64747;
     width: 25%;
     text-transform: uppercase;
     color: #fff;
@@ -47,10 +47,14 @@ h1, h2, h3 {
     border: none;
 }
 
+#begin:hover, #try-again:hover, #next-question:hover {
+    background-color: #F1A9A0;
+}
+
 
 /* TRIVIA GAMEBOARD STYLES */
 #question-tracker {
-    margin-top: 100px;
+    margin-top: 200px;
 }
 
 .question-tracker {
@@ -59,7 +63,13 @@ h1, h2, h3 {
     height: 15px;
     width: 15px;
     border-radius: 50%;
-    background-color: #EF4836;
+    background-color: #F1A9A0;
+    box-shadow: 0 0 10px #F1A9A0;
+}
+
+.question-tracker-active {
+    background-color: #F64747;
+    box-shadow: 0 0 10px #F64747;
 }
 
 .answer-button {
@@ -67,21 +77,22 @@ h1, h2, h3 {
     margin: 20px auto;
     padding: 20px;
     width: 300px;
-    background-color: #517abc;
+    background-color: #4183D7;
     color: #fff;
     letter-spacing: 2px;
     border: none;
 }
 
 .answer-button:hover {
-    background-color: #3f5a84;
+    background-color: #1F3A93;
+    box-shadow: 5px 5px 5px rgba(33, 33, 33, .6);
 }
 
 #next-question {
     display: block;
     margin: 20px auto;
-    background-color: #EF4836;
-    width: 25%;
+    background-color: #F64747;
+    width: 33%;
     text-transform: uppercase;
     color: #fff;
     border-radius: 50px;
