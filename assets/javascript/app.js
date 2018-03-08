@@ -57,7 +57,7 @@ $(document).ready(function () {
         function timerCountdown() {
             timeLeft--;
             $("#timer").html(timeLeft);
-
+            
             if (timeLeft < 1) {
                 clearInterval(intervalId);
                 $("#time-remaining").hide();
@@ -101,9 +101,9 @@ $(document).ready(function () {
 
         // Click on "Next Question" button to generate new question
         $("#next-question").on("click", function () {
+            clearInterval(intervalId);
             if (userGuess === triviaQuestions[currentQuestion].solution) {
                 totalCorrect++;
-                clearInterval(intervalId);
                 $("#time-remaining").hide();
                 $("#answer").html("<h3>That's right!</h3><p>The correct answer is:</p><h3>" + triviaQuestions[currentQuestion].solution + "</h3>");
                 setTimeout(function () {
@@ -116,7 +116,6 @@ $(document).ready(function () {
                 }, 5000);
             }
             if (userGuess != triviaQuestions[currentQuestion].solution) {
-                clearInterval(intervalId);
                 $("#time-remaining").hide();
                 $("#answer").html("<h3>Oh no, that's wrong!</h3><p>The correct answer is:</p><h3>" + triviaQuestions[currentQuestion].solution + "</h3>");
                 setTimeout(function () {
