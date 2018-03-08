@@ -35,10 +35,10 @@ $(document).ready(function () {
     $("#total-questions").html(totalQuestions + " questions");
 
     // Hide begin-game on load
-    // $(".gameboard").hide();
+    $(".gameboard").hide();
 
     // Hide results end-game on load
-    // $(".end-game").hide();
+    $(".end-game").hide();
 
     // Click "Let's Do This" button to start game
     $("#begin").on("click", function () {
