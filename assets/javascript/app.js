@@ -29,6 +29,9 @@ $(document).ready(function () {
     var userGuess; // Holds user guess
     var num = 0; // Counter for question tracker id
 
+    var intervalId; // Empty variable to hold set interval
+    var timeLimit; // Empty variable to hold remaining question time
+
     // Display total number of questions on start
     $("#total-questions").html(totalQuestions + " questions");
 
@@ -47,31 +50,30 @@ $(document).ready(function () {
         displayQuestionTracker();
     });
 
+    // Start the timer
+    function timerCountdown() {
+        timeLimit = 20;
+        $("#timer").html(timeLimit)
+        intervalId = setInterval(decrement, 1000);
+    }
+
+    // Decrement the timer
+    function decrement() {
+        timeLimit--;
+        $("#timer").html(timeLimit);
+        if (timeLimit === 0) {
+            clearInterval(intervalId);
+            $("#time-remaining").hide();
+            $("#timer").html("");
+            $("#answer").html("<h3>Time's Up!</h3><p>The correct answer is:</p><h3>" + triviaQuestions[currentQuestion].solution + "</h3>");
+            newQuestion();
+        }
+    }
+
     // Display the gameboard for the current question
     function displayCurrentQuestion() {
-
-        // Timer function for each question
-        var timeLeft = 21;
-        var intervalId = setInterval(timerCountdown, 1000);
-
-        function timerCountdown() {
-            timeLeft--;
-            $("#timer").html(timeLeft);
-            
-            if (timeLeft < 1) {
-                clearInterval(intervalId);
-                $("#time-remaining").hide();
-                $("#answer").html("<h3>Time's Up!</h3><p>The correct answer is:</p><h3>" + triviaQuestions[currentQuestion].solution + "</h3>");
-                setTimeout(function () {
-                    if (currentQuestion < triviaQuestions.length - 1) {
-                        newQuestion();
-                    }
-                    else if (currentQuestion === triviaQuestions.length - 1) {
-                        endGame();
-                    }
-                }, 5000);
-            };
-        }
+        // Start the timer countdown
+        timerCountdown();
 
         // Display current question
         var questionText = "<h3>" + triviaQuestions[currentQuestion].question + "</h3>";
@@ -144,11 +146,16 @@ $(document).ready(function () {
     };
 
     function newQuestion() {
-        currentQuestion++;
-        $("#question").html("");
-        $("#answer").html("");
-        displayCurrentQuestion();
-        $("#time-remaining").show();
+        if (currentQuestion < triviaQuestions.length - 1) {
+            currentQuestion++;
+            $("#question").html("");
+            $("#answer").html("");
+            displayCurrentQuestion();
+            $("#time-remaining").show();
+        }
+        else if (currentQuestion === triviaQuestions.length - 1) {
+            endGame();
+        }
     }
 
     function endGame() {
