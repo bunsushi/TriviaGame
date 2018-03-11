@@ -66,7 +66,14 @@ $(document).ready(function () {
             $("#time-remaining").hide();
             $("#timer").html("");
             $("#answer").html("<h3>Time's Up!</h3><p>The correct answer is:</p><h3>" + triviaQuestions[currentQuestion].solution + "</h3>");
-            newQuestion();
+            setTimeout(function () {
+                if (currentQuestion < triviaQuestions.length - 1) {
+                    newQuestion();
+                }
+                else if (currentQuestion === triviaQuestions.length - 1) {
+                    endGame();
+                }
+            }, 5000);
         }
     }
 
@@ -104,6 +111,7 @@ $(document).ready(function () {
         // Click on "Next Question" button to generate new question
         $("#next-question").on("click", function () {
             clearInterval(intervalId);
+            $("#next-question").hide();
             if (userGuess === triviaQuestions[currentQuestion].solution) {
                 totalCorrect++;
                 $("#time-remaining").hide();
