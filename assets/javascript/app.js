@@ -48,6 +48,7 @@ $(document).ready(function () {
 
         displayCurrentQuestion();
         displayQuestionTracker();
+        checkQuestionTracker();
     });
 
     // Start the timer
@@ -142,10 +143,11 @@ $(document).ready(function () {
         }
     };
 
+    // Highlights cycled through questions
     function checkQuestionTracker() {
-        if ($(".question-tracker").attr("id") === currentQuestion) {
-            $(".question-tracker").addClass("question-tracker-active");
-        }
+        $("#question-tracker .question-tracker").each(function() {
+            $("#" + currentQuestion).addClass("question-tracker-active");
+        })
     }
 
     // Generate next question or end game
