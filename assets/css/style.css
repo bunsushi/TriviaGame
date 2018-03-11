@@ -27,18 +27,19 @@ a:hover {
 
 h1, h2, h3 {
     font-family: "Raleway", sans-serif;
-    padding: 20px;
+    padding: 10px;
 }
 .begin-game, .gameboard, .end-game {
     background-color: rgba(255, 255, 255, .8);
-    margin: 50px auto;
-    padding: 50px;
+    margin: 30px auto;
+    padding: 30px;
+    max-height: 90%;
     border-radius: 10px;
     position: relative;
 }
 
 #begin, #try-again {
-    margin: 50px auto 0 auto;
+    margin: 30px auto 0 auto;
     background-color: #F64747;
     width: 25%;
     text-transform: uppercase;
@@ -54,15 +55,11 @@ h1, h2, h3 {
 
 
 /* TRIVIA GAMEBOARD STYLES */
-#question-tracker {
-    margin-top: 200px;
-}
-
 .question-tracker {
-    display: block;
-    margin: 30px;
-    height: 10px;
-    width: 10px;
+    display: inline-block;
+    margin: 20px;
+    height: 15px;
+    width: 15px;
     border-radius: 50%;
     background-color: #F1A9A0;
     box-shadow: 0 0 10px #F1A9A0;

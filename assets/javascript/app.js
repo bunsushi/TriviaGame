@@ -76,6 +76,8 @@ $(document).ready(function () {
         // Start the timer countdown
         timerCountdown();
 
+        checkQuestionTracker()
+
         // Display current question
         var questionText = "<h3>" + triviaQuestions[currentQuestion].question + "</h3>";
         $("#question").append(questionText);
@@ -133,12 +135,18 @@ $(document).ready(function () {
             questionTracker.attr("id", num++);
             $("#question-tracker").append(questionTracker);
 
-            var questionNumber = questionTracker.attr("id");
-            console.log(questionNumber);
+            // var questionNumber = questionTracker.attr("id");
+            // console.log(questionNumber);
 
             // Add class question-tracker-active to question-tracker with same id as currentQuestion
         }
     };
+
+    function checkQuestionTracker() {
+        if ($(".question-tracker").attr("id") === currentQuestion) {
+            $(".question-tracker").addClass("question-tracker-active");
+        }
+    }
 
     // Generate next question or end game
     function newQuestion() {
