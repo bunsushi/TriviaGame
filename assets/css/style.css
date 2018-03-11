@@ -84,16 +84,16 @@ h1, h2, h3 {
     border: none;
 }
 
-/* .radio input[type=radio]{
+.radio input[type=radio]{
     visibility: hidden;
-} */
+}
 
 label .radio input[type=radio]:checked{
     background-color: #1F3A93;
     box-shadow: 5px 5px 5px rgba(33, 33, 33, .6);
 }
 
-.radio:hover {
+.radio:hover, .radio-active {
     background-color: #1F3A93;
     box-shadow: 5px 5px 5px rgba(33, 33, 33, .6);
     cursor: pointer;

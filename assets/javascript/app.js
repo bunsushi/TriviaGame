@@ -63,6 +63,7 @@ $(document).ready(function () {
         $("#timer").html(timeLimit);
         if (timeLimit === 0) {
             clearInterval(intervalId);
+            $("#next-question").hide();
             $("#time-remaining").hide();
             $("#timer").html("");
             $("#answer").html("<h3>Time's Up!</h3><p>The correct answer is:</p><h3>" + triviaQuestions[currentQuestion].solution + "</h3>");
@@ -93,6 +94,10 @@ $(document).ready(function () {
         // Capture input
         $('input:radio').on("click", function () {
             userGuess = $(this).attr('value');
+
+            // Change selected answer (and only selected answer) to dark blue
+            $(".radio").removeClass("radio-active");
+            $(this).parent().addClass("radio-active");
         })
 
         // Create "Next Question" button
@@ -128,8 +133,10 @@ $(document).ready(function () {
             questionTracker.attr("id", num++);
             $("#question-tracker").append(questionTracker);
 
-            console.log(questionTracker.attr("id"));
-            console.log("Current question: " + currentQuestion);
+            var questionNumber = questionTracker.attr("id");
+            console.log(questionNumber);
+
+            // Add class question-tracker-active to question-tracker with same id as currentQuestion
         }
     };
 
