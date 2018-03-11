@@ -66,14 +66,7 @@ $(document).ready(function () {
             $("#time-remaining").hide();
             $("#timer").html("");
             $("#answer").html("<h3>Time's Up!</h3><p>The correct answer is:</p><h3>" + triviaQuestions[currentQuestion].solution + "</h3>");
-            setTimeout(function () {
-                if (currentQuestion < triviaQuestions.length - 1) {
-                    newQuestion();
-                }
-                else if (currentQuestion === triviaQuestions.length - 1) {
-                    endGame();
-                }
-            }, 5000);
+            answerKey();
         }
     }
 
@@ -116,30 +109,17 @@ $(document).ready(function () {
                 totalCorrect++;
                 $("#time-remaining").hide();
                 $("#answer").html("<h3>That's right!</h3><p>The correct answer is:</p><h3>" + triviaQuestions[currentQuestion].solution + "</h3>");
-                setTimeout(function () {
-                    if (currentQuestion < triviaQuestions.length - 1) {
-                        newQuestion();
-                    }
-                    else if (currentQuestion === triviaQuestions.length - 1) {
-                        endGame();
-                    }
-                }, 5000);
+                answerKey();
             }
             if (userGuess != triviaQuestions[currentQuestion].solution) {
                 $("#time-remaining").hide();
                 $("#answer").html("<h3>Oh no, that's wrong!</h3><p>The correct answer is:</p><h3>" + triviaQuestions[currentQuestion].solution + "</h3>");
-                setTimeout(function () {
-                    if (currentQuestion < triviaQuestions.length - 1) {
-                        newQuestion();
-                    }
-                    else if (currentQuestion === triviaQuestions.length - 1) {
-                        endGame();
-                    }
-                }, 5000);
+                answerKey();
             }
         });
     };
 
+    // Create question status buttons
     function displayQuestionTracker() {
         // Generate question tracker buttons
         for (var i = 0; i < triviaQuestions.length; i++) {
@@ -153,6 +133,7 @@ $(document).ready(function () {
         }
     };
 
+    // Generate next question or end game
     function newQuestion() {
         if (currentQuestion < triviaQuestions.length - 1) {
             currentQuestion++;
@@ -166,6 +147,19 @@ $(document).ready(function () {
         }
     }
 
+    // Set time out for 5 seconds after trivia response
+    function answerKey() {
+        setTimeout(function () {
+            if (currentQuestion < triviaQuestions.length - 1) {
+                newQuestion();
+            }
+            else if (currentQuestion === triviaQuestions.length - 1) {
+                endGame();
+            }
+        }, 5000);
+    }
+
+    // Display trivia results
     function endGame() {
         $(".gameboard").hide();
         $(".end-game").fadeIn();
@@ -176,7 +170,8 @@ $(document).ready(function () {
         }
         if (totalCorrect === 3) {
             $("#comment").html("Better hit the books!");
-        } else if (totalCorrect < 3) {
+        }
+        else if (totalCorrect < 3) {
             $("#comment").html("See me after class...");
         }
     };
